@@ -2,7 +2,7 @@
 import gmail_module
 import os
 import sys
-import time
+import datetime
 import sqlite3
 from bs4 import BeautifulSoup
 
@@ -18,9 +18,14 @@ Gmailからメッセージを取得してSQLに保存する．
   parser.add_argument("-n", "--number", metavar="数字", type=int, default=10, help="取得するメッセージの件数")
   parser.add_argument("-q", "--query", metavar="文字列", default="", help="検索")
   parser.add_argument("-b", "--break-id-number", metavar="数字", type=int, default=5, help="既知のメッセージか判断するのに用いるidの数")
+  parser.add_argument("--log", metavar="ファイル", help="実行履歴をファイルに追記する．")
   parser.add_argument("--known-continue", action="store_true", help="既知のメッセージに達したときに継続する")
   parser.add_argument("dbfile", metavar="db-file", help="データベースのファイル")
   options = parser.parse_args()
+
+  if options.log:
+    start = datetime.datetime.now()
+    options_str = " ".join([i for i in sys.argv[1:]])
 
   if (not os.path.isfile(options.dbfile)):
     options.create = True
@@ -101,6 +106,14 @@ progress=True,known_ids=known_ids,known_continue=options.known_continue)
   print("")
   conn.commit()
   conn.close()
+
+  if options.log:
+    end = datetime.datetime.now()
+    with open(options.log, mode='a') as f:
+      print("start time: {}".format(start.strftime("%Y-%m-%d--%H-%M-%S")),file=f)
+      print("end time  : {}".format(end.strftime("%Y-%m-%d--%H-%M-%S")),file=f)
+      ## print("options   : {}".format(" ".join([i for i in sys.argv[1:]])),file=f)
+      print("options   : {}".format(options_str),file=f)
 
 if __name__ == "__main__":
   main()
