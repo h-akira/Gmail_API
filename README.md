@@ -1,4 +1,5 @@
-# Gmail_API（2022年10月26日に再作成）
+# Gmail_API
+2022年10月26日にリポジトリを再作成．
 ## 主な参考文献
 - [公式ドキュメント](https://developers.google.com/gmail/api/quickstart/python)
 
