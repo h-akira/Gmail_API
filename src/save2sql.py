@@ -12,7 +12,7 @@ def main():
 Gmailからメッセージを取得してSQLに保存する．
 """)
   parser.add_argument("--version", action="version", version='%(prog)s 0.0.1')
-  parser.add_argument("-t", "--token", metavar="Path", default=os.path.join(os.path.dirname(__file__),"token.json"), help="token.jsonのパス")
+  parser.add_argument("-t", "--token", metavar="Path", default=os.path.join(os.path.dirname(__file__),"token_link.json"), help="token.jsonのパス")
   parser.add_argument("-c", "--credentials", metavar="Path", default=os.path.join(os.path.dirname(__file__),"credentials.json"), help="credentials.jsonのパス")
   parser.add_argument("--create", action="store_true", help="テーブルを削除して作り直す")
   parser.add_argument("-n", "--number", metavar="数字", type=int, default=10, help="取得するメッセージの件数")

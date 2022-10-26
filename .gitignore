@@ -1,2 +1,3 @@
 *.db
 client_secret_*
+token.json
