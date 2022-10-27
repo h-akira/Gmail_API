@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-import gmail_module
 import os
 import sys
 import datetime
 import sqlite3
 from bs4 import BeautifulSoup
+sys.path.append(os.path.join(os.path.dirname(__file__),'../lib'))
+import gmail_module
 
 def main():
   import argparse
