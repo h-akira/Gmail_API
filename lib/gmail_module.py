@@ -144,7 +144,8 @@ def get_mail_list(service,query,N,progress=False,known_ids=[],known_continue=Fal
   return mail_list
 
 def sample():
-   parser = argparse.ArgumentParser(description="""
+  import argparse
+  parser = argparse.ArgumentParser(description="""
 直近の10件のメールを取得して表示する．
 """)
   parser.add_argument("--version", action="version", version='%(prog)s 0.0.1')
@@ -153,7 +154,7 @@ def sample():
   options = parser.parse_args()
   
   N=10
-  creds = get_creds(opitons.token,options.credentials)
+  creds = get_creds(options.token,options.credentials)
   service = get_service(creds)
   mail_list = get_mail_list(service,"",N,progress=True)
   for mail in mail_list:
